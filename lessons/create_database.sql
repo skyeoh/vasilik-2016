@@ -1,5 +1,4 @@
-
-# Creating a company database, by Mike Dane
+# Creating a sample company database, by Mike Dane
 
 # ======== Create tables ========
 # Employee
