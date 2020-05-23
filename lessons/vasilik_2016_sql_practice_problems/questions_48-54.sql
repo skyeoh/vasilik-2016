@@ -204,12 +204,22 @@ FROM TotalOrders
 
 -- Question 52
 SELECT
-	Country 
+	Country
 FROM Suppliers
 UNION
 SELECT
 	Country
+FROM Customers;
+
+SELECT DISTINCT -- There are duplicates
+	Country
+FROM Suppliers
+UNION ALL
+SELECT DISTINCT
+	Country
 FROM Customers
+ORDER BY
+	Country;
 
 -- Question 53
 WITH SupplierCountries AS (
@@ -228,6 +238,22 @@ SELECT
 FROM SupplierCountries S
 	FULL JOIN CustomerCountries C
 		ON S.Country = C.Country;
+
+		-- Alternatively, using derived tables
+SELECT
+	SupplierCountry=SupplierCountries.Country
+	,CustomerCountry=CustomerCountries.Country
+FROM (
+		SELECT DISTINCT
+			Country
+		FROM Suppliers
+	 ) SupplierCountries
+	FULL JOIN (
+		SELECT DISTINCT
+			Country
+		FROM Customers
+	 ) CustomerCountries
+		ON SupplierCountries.Country = CustomerCountries.Country;
 
 -- Question 54
 WITH Countries AS (
